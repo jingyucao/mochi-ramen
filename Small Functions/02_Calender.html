@@ -137,11 +137,11 @@
         html += "<li></li>"
       }
 
-      let myMonth = new Date();
+      let myTime = new Date();
 
       for (let i = 1; i <= days; i++){
         
-      if (myMonth.getMonth() === cMonth) {
+      if (myTime.getMonth() === cMonth & myTime.getFullYear() === cYear) {
           if (i === cDay) {
             html += "<li class='active'>" + i + "</li>"
           } else {
