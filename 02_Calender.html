@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02_Calender</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #data {
+      width: 280px;
+      border: 1px solid #000000;
+      margin: 20px auto;
+    }
+
+    #data > p {
+      text-align: center;
+    }
+
+    #data > h5 {
+      display: flex; /*需要查一下flex的用法*/
+    }
+
+    #data > h5 > span {
+      padding: 0 10px;
+    }
+
+    #prev, #next {
+      cursor: pointer;
+    }
+
+    #month {
+      flex: 1;
+      text-align: center;
+    }
+
+    #weekdays {
+      overflow: hidden;
+      list-style: none;
+      background: #ccc;
+    }
+
+    #weekdays > li {
+      float: left;
+      width: 40px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+    }
+
+    #date {
+      overflow: hidden;
+      list-style: none;
+    }
+
+    #date > li {
+      float: left;
+      width: 34px;
+      height: 34px;
+      margin: 1px 1px;
+      border: 2px solid rgba(0, 0, 0, 0);
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #date > .hover:hover {
+      border: 2px solid #ff8e0f;
+    }
+
+    .active {
+      background-color: #0b74ff;
+      color: white;
+    }
+
+  </style>
+
+
+</head>
+<body>
+<div id="data">
+
+  <p id="year">
+    2020
+  </p>
+
+  <h5>
+    <span id="prev">Last</span>
+    <span id="month">October</span>
+    <span id="next">Next</span>
+  </h5>
+
+  <ul id="weekdays">
+    <li>Sun</li>
+    <li>Mon</li>
+    <li>Tue</li>
+    <li>Wed</li>
+    <li>Thu</li>
+    <li>Fri</li>
+    <li>Sat</li>
+
+  </ul>
+  <ul id="date"></ul>
+  <script>
+
+    let date = new Date();  //let和const都是ES6之后的新功能，let是局部变量，只在所在代码块内有效，const是只读
+    //console.log(date)
+    add();
+
+    function add() {
+
+      let cYear = date.getFullYear(); //获取年份
+      //console.log(cyear)
+      let cMonth = date.getMonth(); //获取月份，0-11
+      //console.log(cmonth)
+      let cDay = date.getDate();
+
+      //得到每月的第一天是周几
+      //console.log(new Date(cYear, cMonth, 1).getDay());
+      let firstDay = new Date(cYear, cMonth, 1).getDay();
+      //得到每月的最后一天是几号
+      let days = new Date(cYear, cMonth + 1, -1).getDate() + 1;
+      //console.log(days);
+
+      const arr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      document.getElementById('year').innerHTML = cYear;
+      document.getElementById('month').innerHTML = arr[cMonth];
+
+      let html = "";
+
+      for (let d = 0; d < firstDay; d++) {
+        html += "<li></li>"
+      }
+
+      let myMonth = new Date();
+
+      for (let i = 1; i <= days; i++){
+        
+      if (myMonth.getMonth() === cMonth) {
+          if (i === cDay) {
+            html += "<li class='active'>" + i + "</li>"
+          } else {
+            html += "<li class='hover'>" + i + "</li>"
+          }
+      } else {
+        for (i = 1; i <= days; i++) {
+          html += "<li class='hover'>" + i + "</li>"
+        }}
+        
+        document.getElementById('date').innerHTML = html;
+
+        document.getElementById('prev').onclick = function () {
+          date.setMonth(date.getMonth() - 1);
+          add()
+        };
+        document.getElementById('next').onclick = function () {
+          date.setMonth(date.getMonth() + 1);
+          add()
+        }
+      }}
+  </script>
+
+
+</div>
+</body>
+</html>
