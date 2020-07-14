@@ -3,6 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <title>01_Calculator</title>
+  <script type="text/javascript">
+
+    document.onkeyup = function (event) {//按键信息对象以函数参数的形式传递进来了，就是那个e
+      if (event.key === "Enter") {
+        myFunction()
+        //此处编写用户敲回车后的代码
+      }
+    };
+
+    function myFunction() {
+      let num1 = document.getElementById('num1').value;
+      let num2 = document.getElementById('num2').value;
+      const ysf = document.getElementById('ysf').value;
+
+      let flag = true; //做一个标记位
+
+      let result = "ERROR:";
+      if (num1 === "") {
+        result += "the first number shouldn't be empty";
+        flag = false;
+      } else {
+        num1 = parseFloat(num1);
+        if (isNaN(num1)) {
+          result += "the first number is not a number";
+          flag = false;
+        }
+      }
+      if (num2 === "") {
+        result += "the second number shouldn't be empty";
+        flag = false;
+      } else {
+        num2 = parseFloat(num2);
+        if (isNaN(num2)) {
+          result += "the second number is not a number";
+          flag = false;
+        }
+      }
+
+
+      if (flag) {   //标记位写flag，而不是flag=true
+        switch (ysf) {
+          case "+":
+            result = "result:" + num1 + "+" + num2 + "=" + (num1 + num2);
+            break;
+          case "-":
+            result = "result:" + num1 + "-" + num2 + "=" + (num1 - num2);
+            break;
+          case "*":
+            result = "result:" + num1 + "*" + num2 + "=" + (num1 * num2);
+            break;
+          case "/":
+            if (num2 === 0) {
+              result = "the divisor shouldn't be 0"
+            } else {
+              result = "result:" + num1 + "/" + num2 + "=" + (num1 / num2)
+            }
+            break;
+
+          case "%":
+            if (num2 === 0) {
+              result = "the divisor shouldn't be 0"
+            } else {
+              result = "result:" + num1 + "%" + num2 + "=" + (num1 % num2)
+            }
+            break;
+        }
+      }
+
+      document.getElementById('res').innerHTML = result;
+
+    }
+
+  </script>
+
 </head>
 <body>
 <input type="text" id="num1"/>
@@ -14,75 +88,7 @@
   <option value="%">%</option>
 </select>
 <input type="text" id="num2"/>
-<button type="button" id="btn">go</button>
+<button type="button" id="btn" onclick="myFunction()">go</button>
 <p id="res">Enter the number you want to calculate:</p>
-
-<script type="text/javascript">
-  document.getElementById('btn').onclick = function () {
-    var num1 = document.getElementById('num1').value
-    var num2 = document.getElementById('num2').value
-    var ysf = document.getElementById('ysf').value
-
-
-    var flag = true; //做一个标记位
-
-    var result = "ERROR:";
-    if (num1 == "") {
-      result += "the first number shouldn't be empty";
-      flag = false;
-    } else {
-      var num1 = parseFloat(num1);
-      if (isNaN(num1)) {
-        result += "the first number is not a number";
-        flag = false;
-      }
-    }
-    if (num2 == "") {
-      result += "the second number shouldn't be empty";
-      flag = false;
-    } else {
-      var num2 = parseFloat(num2);
-      if (isNaN(num2)) {
-        result += "the second number is not a number";
-        flag = false;
-      }
-    }
-
-
-    if (flag) {   //标记位写flag，而不是flag=true
-      switch (ysf) {
-        case "+":
-          result = "result:" + num1 + "+" + num2 + "=" + (num1 + num2);
-          break;
-        case "-":
-          result = "result:" + num1 + "-" + num2 + "=" + (num1 - num2);
-          break;
-        case "*":
-          result = "result:" + num1 + "*" + num2 + "=" + (num1 * num2);
-          break;
-        case "/":
-          if (num2 == 0) {
-            result = "the divisor shouldn't be 0"
-          } else {
-            result = "result:" + num1 + "/" + num2 + "=" + (num1 / num2)
-          }
-          break; 
-
-        case "%":
-          if (num2 == 0) {
-            result = "the divisor shouldn't be 0"
-          } else {
-            result = "result:" + num1 + "%" + num2 + "=" + (num1 % num2)
-          }
-          break;
-      }
-    }
-
-    document.getElementById('res').innerHTML = result;
-
-  }
-</script>
-
-
 </body>
 </html>
