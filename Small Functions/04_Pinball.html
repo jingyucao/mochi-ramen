@@ -1,0 +1,74 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>04_Pinball</title>
+  <style type="text/css">
+    #bg {
+      background-color: #e7e7e7;
+      height: 500px;
+      width: 800px;
+      left: 50px;
+      top: 50px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+<input type="button" value="show the ball" id="btn">
+<div id="bg"></div>
+
+<script>
+
+  document.getElementById('btn').onclick = function () {
+    let bg = document.getElementById('bg');
+    let ball = document.createElement("div");
+
+    bg.appendChild(ball);
+    ball.style.width = "50px";
+    ball.style.height = "50px";
+    ball.style.backgroundColor = "#8ac9ce";
+    ball.style.cssText += ";border-radius:50px;position:absolute;";
+
+    let xPosition = bg.offsetWidth / 2 - ball.offsetWidth / 2;
+    let yPosition = bg.offsetHeight / 2 - ball.offsetHeight / 2;
+
+    console.log(xPosition)
+    console.log(yPosition)
+
+    ball.style.left = xPosition + "px";
+    ball.style.top = yPosition + "px";
+
+    let xMove = Math.random()*20;
+    let yMove = Math.random()*20;
+
+    setInterval(function () {
+
+      xPosition += xMove;
+      yPosition += yMove;
+
+      if (xPosition < 0 || xPosition > (bg.offsetWidth - ball.offsetWidth)) {
+        xMove = -xMove;
+      }
+
+      if (yPosition < 0 || yPosition > (bg.offsetHeight - ball.offsetHeight)) {
+        yMove = -yMove;
+      }
+
+      ball.style.left = xPosition + "px";
+      ball.style.top = yPosition + "px";
+
+    }, 30); //一分钟执行30次
+
+//了解offset的各种功能！
+
+  }
+
+
+</script>
+
+</body>
+</html>
