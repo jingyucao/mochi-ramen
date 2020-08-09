@@ -18,32 +18,54 @@
 </head>
 
 <body>
-<input type="button" value="show the ball" id="btn">
+<input type="button" value="show the ball" id="btn" onclick="createBall()">
 <div id="bg"></div>
 
 <script>
+  let ballIndex = 0;
 
-  document.getElementById('btn').onclick = function () {
+  function createBall() {
+
     let bg = document.getElementById('bg');
+
     let ball = document.createElement("div");
 
+    const colorArr = ["#f29c9f", "#facd89", "#f29b76", "#cce198", "#7ecef4", "#8f82bc", "#cce198"];
+
+    // for(var ballIndex=0;ballIndex<100;ball)
+
+    ballIndex = ballIndex + 1;
+    console.log(ballIndex);
+
     bg.appendChild(ball);
-    ball.style.width = "50px";
-    ball.style.height = "50px";
-    ball.style.backgroundColor = "#8ac9ce";
-    ball.style.cssText += ";border-radius:50px;position:absolute;";
+    ball.style.width = "30px";
+    ball.style.height = "30px";
+    ball.style.backgroundColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+    console.log(ball.style.backgroundColor);
+    ball.style.cssText += ";border-radius:30px;position:absolute;";
+    ball.setAttribute("class", "balls");
+    ball.setAttribute("id", ballIndex);
+    console.log(ball.id);
 
     let xPosition = bg.offsetWidth / 2 - ball.offsetWidth / 2;
     let yPosition = bg.offsetHeight / 2 - ball.offsetHeight / 2;
 
-    console.log(xPosition)
-    console.log(yPosition)
+    console.log(xPosition);
+    console.log(yPosition);
 
     ball.style.left = xPosition + "px";
     ball.style.top = yPosition + "px";
 
-    let xMove = Math.random()*20;
-    let yMove = Math.random()*20;
+    let xMove = Math.random() * 20;
+    let yMove = Math.random() * 20;
+
+// for (var m=0;m<ballIndex;m++){
+//   var p = documeng.getElementsById("m");
+// }
+//
+//     for (var m=0;m<ballIndex;m++){
+//       var q = documeng.getElementsById("m");
+//     }
 
     setInterval(function () {
 
@@ -57,6 +79,14 @@
       if (yPosition < 0 || yPosition > (bg.offsetHeight - ball.offsetHeight)) {
         yMove = -yMove;
       }
+      // || p.style.top - q.style.top === ball.offsetHeight / 2
+      // || (p.style.left - q.style.left) === ball.offsetWidth / 2
+      //  if (xxid.xPostion-xxid.xPosition=ball.offsetWidth||-(xxid.xPostion-xxid.xPosition)=ball.offsetWidth){
+      //  xMove = -xMove;
+      //  }
+      // if (xxid.yPostion-xxid.yPosition=ball.offsetHeight||-(xxid.yPostion-xxid.yPosition)=ball.offsetHeight){
+      // yMove = -yMove;
+      // }
 
       ball.style.left = xPosition + "px";
       ball.style.top = yPosition + "px";
