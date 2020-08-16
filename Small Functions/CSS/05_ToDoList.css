@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrap {
+  width: 400px;
+  margin: 20px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid gainsboro;
+}
+
+th {
+  height: 50px;
+  background: darkturquoise;
+  margin: 20px auto;
+  color: white;
+  border: 1px solid darkgray;
+}
+
+td {
+  height: 30px;
+  background: gainsboro;
+  margin: 20px auto;
+  color: dimgrey;
+  border: 1px solid darkgray;
+  padding-left: 10px;
+
+}
+
+#btn_AddData{
+  background-color: #4CAF50; /* Green */
+  border-radius:3px;
+  margin-bottom: 6px;
+  color: white;
+  border: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+}
+
+#overLayer {
+  display:none;
+  background-color: #ccc;width: 100%;
+  position:absolute;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 1;}
+
+#formAdd{
+
+  z-index:99;
+  display: none;
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 40%;
+  background-color: #FFF;
+}
